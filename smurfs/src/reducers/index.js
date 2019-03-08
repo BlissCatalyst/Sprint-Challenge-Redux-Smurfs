@@ -21,7 +21,7 @@ import {
 */
 const initialState = {
   smurfs: [],
-  fetchingSmurfs: false,
+  fetchingSmurfs: true,
   addingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,
@@ -41,13 +41,15 @@ export default function reducer(state = initialState, action) {
     case ADDSMURF:
       return {
         ...state,
-        addingSmurf: true
+        addingSmurf: true,
+        error: null
       };
     case "ADD_SUCCESS":
       return {
         ...state,
         addingSmurf: false,
-        smurfs: action.payload
+        smurfs: action.payload,
+        error: null
       }
     case "NEW_SMURF_ERROR":
       return {
@@ -60,12 +62,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         fetchingSmurfs: true,
+        error: null
       };
     case "GET_SUCCESS":
       return {
         ...state,
         fetchingSmurfs: false,
-        smurfs: action.payload
+        smurfs: action.payload,
+        error: null
       }
     case "GET_SMURF_ERROR":
       return {
