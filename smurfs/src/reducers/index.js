@@ -37,8 +37,10 @@ const initialState = {
 */
 export default function reducer(state = initialState, action) {
   switch(action.type) {
+    // Adding smurf cases
     case ADDSMURF:
       return {
+        ...state,
         addingSmurf: true
       };
     case "ADD_SUCCESS":
@@ -53,8 +55,10 @@ export default function reducer(state = initialState, action) {
         addingSmurf: false,
         error: action.payload
       }
+    // Fetching Smurf cases
     case GETSMURF:
       return {
+        ...state,
         fetchingSmurfs: true,
       };
     case "GET_SUCCESS":
@@ -69,6 +73,7 @@ export default function reducer(state = initialState, action) {
         fetchingSmurfs: false,
         error: action.payload
       }
+    // stretch cases
     case UPDATESMURF:
       return {
         ...state
