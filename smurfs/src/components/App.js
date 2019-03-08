@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addSmurf, getSmurf } from '../actions';
+
+import Loader from 'react-loader-spinner';
+
 import './App.css';
 /*
  to wire this component up you're going to need a few things.
@@ -19,4 +24,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  smurfs: state.smurfs,
+  fetchingSmurfs: state.fetchingSmurfs,
+  addingSmurf: state.addingSmurf,
+  error: state.error
+})
+
+export default connect(
+  mapStateToProps, { addSmurf, getSmurf }
+)(App);
