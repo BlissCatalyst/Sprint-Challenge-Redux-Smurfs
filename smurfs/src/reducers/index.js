@@ -39,12 +39,36 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
     case ADDSMURF:
       return {
-        ...state
+        addingSmurf: true
       };
+    case "ADD_SUCCESS":
+      return {
+        ...state,
+        addingSmurf: false,
+        smurfs: action.payload
+      }
+    case "NEW_SMURF_ERROR":
+      return {
+        ...state,
+        addingSmurf: false,
+        error: action.payload
+      }
     case GETSMURF:
       return {
-        ...state
+        fetchingSmurfs: true,
       };
+    case "GET_SUCCESS":
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        smurfs: action.payload
+      }
+    case "GET_SMURF_ERROR":
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+      }
     case UPDATESMURF:
       return {
         ...state
@@ -53,5 +77,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state
       };
+    default: return state;
   }
 }
